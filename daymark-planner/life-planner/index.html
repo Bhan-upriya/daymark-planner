@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f7f7fb" />
+  <title>Daymark — Personal Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#dashboard"><span class="brand-mark">d</span><span>daymark<span class="brand-dot">.</span></span></a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="nav-list" aria-label="Main navigation">
+        <button class="nav-item active" data-view="dashboard"><span>▦</span> Overview</button>
+        <button class="nav-item" data-view="tasks"><span>☷</span> All tasks <span class="nav-count" id="navTaskCount">0</span></button>
+        <button class="nav-item" data-view="schedule"><span>▦</span> Schedule</button>
+      </nav>
+      <div class="side-label category-label">CATEGORIES <button id="addCategoryBtn" title="Add category">＋</button></div>
+      <div id="categoryNav" class="category-nav"></div>
+      <div class="sidebar-bottom">
+        <div class="storage-note"><span class="storage-dot"></span><div><strong>Saved on this device</strong><small>Your tasks stay in this browser.</small></div></div>
+        <button class="nav-item" id="exportBtn"><span>↧</span> Export backup</button>
+        <button class="nav-item" id="importBtn"><span>↥</span> Import backup</button>
+        <input type="file" id="importFile" accept="application/json" hidden />
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button>
+        <div class="breadcrumb">Workspace <span>/</span> <strong id="breadcrumbTitle">Overview</strong></div>
+        <div class="top-actions"><span class="today-label" id="todayLabel"></span><button class="avatar" title="Personal workspace">K</button></div>
+      </header>
+
+      <section class="page active" id="dashboardView">
+        <div class="welcome-row"><div><p class="eyebrow" id="welcomeDate">YOUR SPACE, YOUR PACE</p><h1>Make room for <span>what matters.</span></h1><p class="subheading">One place for your plans, priorities and progress.</p></div><button class="primary-btn" id="quickAddBtn">＋ Add a task</button></div>
+        <div class="exam-banner"><div class="exam-icon">✦</div><div class="exam-copy"><span class="banner-kicker">CURRENT FOCUS</span><strong>Semester exams</strong><p>5 theory subjects · 2 lab subjects · Exams begin November 17</p></div><div class="exam-days"><strong id="examCountdown">11</strong><span>days to go</span></div><button class="banner-edit" id="editExamBtn" title="Edit exam details">✎</button></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span>Open tasks</span><span class="stat-icon lavender">☷</span></div><strong id="openCount">0</strong><small>Things still on your list</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Completed</span><span class="stat-icon mint">✓</span></div><strong id="completedCount">0</strong><small>Small wins add up</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Due soon</span><span class="stat-icon peach">◷</span></div><strong id="dueCount">0</strong><small>Due in the next 7 days</small></article>
+          <article class="stat-card progress-stat"><div class="stat-top"><span>Overall progress</span><span class="stat-icon blue">↗</span></div><strong id="progressPercent">0%</strong><div class="progress-track"><span id="progressBar"></span></div><small id="progressCaption">Let's get started</small></article>
+        </div>
+        <div class="dashboard-grid">
+          <section class="panel focus-panel"><div class="panel-heading"><div><h2>Today's focus</h2><p>A short list is easier to act on.</p></div><button class="text-btn" data-goto="tasks">View all tasks →</button></div><div id="todayTasks" class="task-list"></div></section>
+          <section class="panel category-panel"><div class="panel-heading"><div><h2>By category</h2><p>See where your attention goes.</p></div></div><div id="categorySummary" class="category-summary"></div></section>
+        </div>
+        <section class="panel upcoming-panel"><div class="panel-heading"><div><h2>Coming up</h2><p>Your next deadlines.</p></div><button class="text-btn" data-goto="schedule">Open schedule →</button></div><div id="upcomingTasks" class="upcoming-list"></div></section>
+      </section>
+
+      <section class="page" id="tasksView">
+        <div class="page-heading"><div><p class="eyebrow">YOUR WORKSPACE</p><h1>All tasks</h1><p class="subheading">Capture it, break it down, then make progress.</p></div><button class="primary-btn" id="addTaskBtn">＋ New task</button></div>
+        <div class="toolbar"><div class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search tasks..." /></div><select id="statusFilter" aria-label="Filter by status"><option value="all">All statuses</option><option value="open">Not completed</option><option value="done">Completed</option></select><select id="priorityFilter" aria-label="Filter by priority"><option value="all">All priorities</option><option value="High">High priority</option><option value="Medium">Medium priority</option><option value="Low">Low priority</option></select><select id="sortFilter" aria-label="Sort tasks"><option value="date">Sort: due date</option><option value="priority">Sort: priority</option><option value="created">Sort: recently added</option></select></div>
+        <div class="task-section-heading"><span id="taskResultLabel">All tasks</span><span id="taskResultCount">0 tasks</span></div><div id="allTasksList" class="all-task-list"></div>
+      </section>
+
+      <section class="page" id="scheduleView">
+        <div class="page-heading"><div><p class="eyebrow">PLAN AHEAD</p><h1>Your schedule</h1><p class="subheading">Deadlines and milestones, in one view.</p></div><button class="primary-btn" id="scheduleAddBtn">＋ Add task</button></div>
+        <div class="schedule-note"><span>◷</span><div><strong>Give tasks a date to see them here.</strong><p>Tasks without a deadline remain in your task list.</p></div></div>
+        <div id="scheduleList" class="schedule-list"></div>
+      </section>
+      <footer class="footer-note">DAYMARK <span>·</span> A little structure goes a long way.</footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="taskModal" aria-hidden="true"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-head"><div><p class="eyebrow">TASK DETAILS</p><h2 id="modalTitle">Create a task</h2></div><button class="icon-btn" id="closeModal" aria-label="Close">×</button></div><form id="taskForm"><input type="hidden" id="taskId"/><label>Task name<input id="taskTitle" required maxlength="120" placeholder="What do you want to get done?" /></label><div class="form-row"><label>Category<select id="taskCategory"></select></label><label>Priority<select id="taskPriority"><option>High</option><option selected>Medium</option><option>Low</option></select></label></div><div class="form-row"><label>Start date<input id="taskStart" type="date" /></label><label>Deadline<input id="taskDeadline" type="date" /></label></div><label>Notes<textarea id="taskNotes" rows="2" placeholder="Add context, links or reminders..."></textarea></label><div class="subtask-editor"><div class="subtask-title"><strong>Subtasks</strong><span>Break the task into smaller steps</span></div><div id="subtaskInputs"></div><div class="add-subtask-row"><input id="newSubtask" placeholder="Add a subtask..."/><button type="button" class="secondary-btn" id="addSubtaskBtn">＋ Add</button></div></div><div class="modal-actions"><button type="button" class="secondary-btn" id="cancelModal">Cancel</button><button type="submit" class="primary-btn">Save task</button></div></form></section></div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
