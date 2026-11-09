@@ -68,7 +68,18 @@
     </main>
   </div>
 
-  <div class="modal-backdrop" id="taskModal" aria-hidden="true"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-head"><div><p class="eyebrow">TASK DETAILS</p><h2 id="modalTitle">Create a task</h2></div><button class="icon-btn" id="closeModal" aria-label="Close">×</button></div><form id="taskForm"><input type="hidden" id="taskId"/><label>Task name<input id="taskTitle" required maxlength="120" placeholder="What do you want to get done?" /></label><div class="form-row"><label>Category<select id="taskCategory"></select></label><label>Priority<select id="taskPriority"><option>High</option><option selected>Medium</option><option>Low</option></select></label></div><div class="form-row"><label>Start date<input id="taskStart" type="date" /></label><label>Deadline<input id="taskDeadline" type="date" /></label></div><label>Notes<textarea id="taskNotes" rows="2" placeholder="Add context, links or reminders..."></textarea></label><div class="subtask-editor"><div class="subtask-title"><strong>Subtasks</strong><span>Break the task into smaller steps</span></div><div id="subtaskInputs"></div><div class="add-subtask-row"><input id="newSubtask" placeholder="Add a subtask..."/><button type="button" class="secondary-btn" id="addSubtaskBtn">＋ Add</button></div></div><div class="modal-actions"><button type="button" class="secondary-btn" id="cancelModal">Cancel</button><button type="submit" class="primary-btn">Save task</button></div></form></section></div>
+  <div class="modal-backdrop" id="taskModal" aria-hidden="true"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-head"><div><p class="eyebrow">TASK DETAILS</p><h2 id="modalTitle">Create a task</h2></div><button class="icon-btn" id="closeModal" aria-label="Close">×</button></div><form id="taskForm"><input type="hidden" id="taskId"/><label>Task name<input id="taskTitle" required maxlength="120" placeholder="What do you want to get done?" /></label><div class="form-row"><label>Category<select id="taskCategory"></select></label><label>Priority<select id="taskPriority"><option>High</option><option selected>Medium</option><option>Low</option></select></label></div><div class="form-row"><label>Start date<input id="taskStart" type="date" /></label><label>Deadline<input id="taskDeadline" type="date" /></label></div><label>Notes<textarea id="taskNotes" rows="2" placeholder="Add context, links or reminders..."></textarea></label><div class="attachment-editor">
+<div class="subtask-title"><strong>Attachments</strong><span>Files saved in this browser</span></div>
+<div class="attachment-actions">
+<label class="attachment-picker" for="taskFiles">＋ Add files</label>
+<label class="attachment-picker secondary" for="taskFolder">＋ Add folder</label>
+<input id="taskFiles" type="file" multiple hidden />
+<input id="taskFolder" type="file" webkitdirectory directory multiple hidden />
+</div>
+<p class="attachment-hint">Choose documents, images, ZIPs and other files. Folder selection depends on browser support.</p>
+<div id="attachmentList" class="attachment-list"><div class="attachment-empty">No files attached yet.</div></div>
+</div>
+<div class="subtask-editor"><div class="subtask-title"><strong>Subtasks</strong><span>Break the task into smaller steps</span></div><div id="subtaskInputs"></div><div class="add-subtask-row"><input id="newSubtask" placeholder="Add a subtask..."/><button type="button" class="secondary-btn" id="addSubtaskBtn">＋ Add</button></div></div><div class="modal-actions"><button type="button" class="secondary-btn" id="cancelModal">Cancel</button><button type="submit" class="primary-btn">Save task</button></div></form></section></div>
   <div class="toast" id="toast" role="status"></div>
   <script src="app.js"></script>
 </body>

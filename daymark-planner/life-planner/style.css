@@ -16,3 +16,22 @@
 .all-task-list .task-card{margin-bottom:1px}
 .task-card.done .task-extra{opacity:.75}
 @media(max-width:760px){.task-extra{padding-left:14px}.task-card .task-row{flex-wrap:wrap}.task-card .task-main{min-width:120px}}
+
+/* Local file attachments */
+.attachment-editor{border-top:1px solid var(--line);padding-top:15px;margin-top:16px}
+.attachment-actions{display:flex;gap:8px;flex-wrap:wrap}
+.attachment-picker{display:inline-flex;align-items:center;justify-content:center;background:var(--lav);color:var(--purple-dark);border-radius:8px;padding:9px 12px;font-size:11px;font-weight:700;cursor:pointer}
+.attachment-picker.secondary{background:#f1f0f7;color:#57566c}
+.attachment-hint{font-size:10px;line-height:1.5;color:var(--muted);margin:9px 0}
+.attachment-list{display:grid;gap:7px}
+.attachment-empty{font-size:11px;color:var(--muted);padding:10px;border:1px dashed var(--line);border-radius:8px}
+.attachment-item{display:flex;align-items:center;gap:9px;padding:9px 10px;background:#fafafe;border:1px solid var(--line);border-radius:9px;min-width:0}
+.attachment-icon{font-size:17px;flex-shrink:0}
+.attachment-info{flex:1;min-width:0}
+.attachment-name{font-size:11px;font-weight:700;overflow-wrap:anywhere}
+.attachment-size{font-size:10px;color:var(--muted);margin-top:3px}
+.attachment-item button{border:0;background:transparent;color:var(--purple-dark);font-size:11px;font-weight:700;cursor:pointer;padding:5px}
+.attachment-item button.remove-attachment{color:#c16b6b}
+.task-attachments{border-top:1px solid #f0eff5;margin-top:10px;padding-top:9px}
+.task-attachment-link{display:inline-flex;align-items:center;gap:6px;margin:5px 8px 0 0;padding:6px 8px;background:#f7f6fc;border-radius:7px;color:var(--purple-dark);font-size:10px;text-decoration:none;max-width:100%;overflow-wrap:anywhere}
+.task-attachment-link:hover{background:var(--lav)}
